@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Modules\Core\Models\Follow;
 use Modules\Core\Models\Order;
 use Modules\Core\Models\Token;
 use Modules\Core\Models\Transaction;
@@ -22,6 +23,7 @@ class User extends Authenticatable
     protected $fillable = [
         'full_name',
         'username',
+        'wallet',
         'email',
         'password',
     ];
@@ -61,6 +63,11 @@ class User extends Authenticatable
 
     public function tokens()
     {
-        return $this->hasMany(Token::class, 'id', 'user_id');
+        return $this->hasMany(Token::class, 'user_id', 'id');
+    }
+
+    public function follows()
+    {
+        return $this->hasMany(Follow::class, 'user_id', 'id');
     }
 }
