@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Core\Models\Order;
+use Modules\Core\Models\Token;
 use Modules\Core\Models\Transaction;
 
 class User extends Authenticatable
@@ -19,7 +20,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'full_name',
+        'username',
         'email',
         'password',
     ];
@@ -55,5 +57,10 @@ class User extends Authenticatable
     public function transactions()
     {
         return $this->hasMany(Transaction::class, 'id', 'user_id');
+    }
+
+    public function tokens()
+    {
+        return $this->hasMany(Token::class, 'id', 'user_id');
     }
 }

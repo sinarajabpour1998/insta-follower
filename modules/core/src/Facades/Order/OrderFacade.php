@@ -6,7 +6,7 @@ use Modules\Core\Facades\BaseFacade;
 /**
  * @class \Modules\Core\Facades\Order\OrderFacade
  *
- * @method static object|null test($test)
+ * @method static object getUserOrders($user_id)
  *
  * @see \Modules\Core\Repositories\Order\OrderRepository
  */
