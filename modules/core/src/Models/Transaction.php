@@ -6,18 +6,18 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = ["user_id", "follow_total_count", "follow_remain_count", "username", "status"];
+    protected $fillable = ["user_id", "order_id", "amount", "status"];
 
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public function transactions()
+    public function order()
     {
-        return $this->hasMany(Transaction::class, 'id', 'order_id');
+        return $this->belongsTo(Order::class, 'order_id', 'id');
     }
 }
