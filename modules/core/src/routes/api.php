@@ -10,5 +10,6 @@ Route::group([
 ], function () {
 
     Route::get("/", "Order\OrderController@index")->name('api.core.order.index');
+    Route::post("/create", "Order\OrderController@create")->name('api.core.order.create');
 
 });

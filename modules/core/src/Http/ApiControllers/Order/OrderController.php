@@ -15,12 +15,26 @@ class OrderController extends ApiController
             'page' => ['required', 'integer', 'min:1']
         ]);
 
-        $orders = OrderFacade::getUserOrders($request->user->id);
+        $orders = OrderFacade::getUserOrders($request->user);
 
         return response([
             'message' => 'ok',
             'orders' => OrderResource::collection($orders->orders),
             'pages' => $orders->pages
-        ], 200);
+        ]);
+    }
+
+    public function create(Request $request)
+    {
+        $request->validate([
+            'follow_count' => ['required', 'integer', 'min:1'],
+            'username' => ['required', 'string', "min:3", "max:1000"]
+        ]);
+
+        OrderFacade::createUserOrder($request);
+
+        return response([
+            'message' => 'Order has been created successfully!',
+        ]);
     }
 }
