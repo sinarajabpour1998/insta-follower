@@ -3,10 +3,8 @@
 namespace Modules\Core;
 
 use Illuminate\Support\ServiceProvider;
-use Modules\Core\Facades\Menu\MenuFacade;
-use Modules\Core\Facades\Ticket\TicketFacade;
-use Modules\Core\Repositories\Menu\MenuRepository;
-use Modules\Core\Repositories\Ticket\TicketRepository;
+use Modules\Core\Facades\Order\OrderFacade;
+use Modules\Core\Repositories\Order\OrderRepository;
 
 class CoreServiceProvider extends ServiceProvider
 {
@@ -17,7 +15,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        MenuFacade::shouldProxyTo(MenuRepository::class);
+        OrderFacade::shouldProxyTo(OrderRepository::class);
     }
 
     /**
